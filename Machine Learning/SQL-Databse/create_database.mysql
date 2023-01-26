@@ -82,6 +82,12 @@ INSERT into Products values (2,'B',100,'Beverages');
 INSERT into Products values (3,'C',150,'Diary');
 INSERT into Products values (4,'D',500,'Branded Food');
 
+INSERT into Products values (5,'A',200,'Eggs Food');
+INSERT into Products values (6,'D',300,'Chapati Food');
+INSERT into Products values (7,'C',400,'Idli Food');
+INSERT into Products values (8,'B',500,'Dosa Food');
+INSERT into Products values (9,'A',600,'Gahtiya Food');
+
 DELETE  from Products where id=1;
 select * from Products;
 
@@ -90,3 +96,6 @@ create VIEW prices as
 select Prod_Price from Products;
 
 select * from prices;
+
+-- Windows Functions over ->
+select * , sum(Prod_Price) over(PARTITION BY Prod_Name) as 'price with same prod name' from Products;
