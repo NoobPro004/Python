@@ -47,3 +47,24 @@ select * from tab1;
 select count(DISTINCT(address)) from tab1;
 
 
+create table info(
+    N1 varchar(255),
+    id1 int,
+    city1 varchar(255),
+    income int
+);
+
+insert into info values('Employee5',26,'Delhi',300000);
+
+select * from info;
+
+
+select * from info ORDER BY city1 Desc, income ASC;
+
+show DATABASES;
+
+use classicmodels;
+
+show tables;
+
+describe employees;
