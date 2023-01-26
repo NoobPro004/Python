@@ -63,8 +63,30 @@ select * from info ORDER BY city1 Desc, income ASC;
 
 show DATABASES;
 
-use classicmodels;
+use my_app;
 
 show tables;
 
-describe employees;
+
+use my_app;
+
+create table Products(
+    Id int,
+    Prod_Name VARCHAR(255),
+    Prod_Price int,
+    Prod_Type VARCHAR(255)
+);
+
+INSERT into Products values (1,'A',200,'Fruits & Vegetables');
+INSERT into Products values (2,'B',100,'Beverages');
+INSERT into Products values (3,'C',150,'Diary');
+INSERT into Products values (4,'D',500,'Branded Food');
+
+DELETE  from Products where id=1;
+select * from Products;
+
+
+create VIEW prices as 
+select Prod_Price from Products;
+
+select * from prices;
