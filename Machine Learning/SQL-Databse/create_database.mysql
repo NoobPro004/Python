@@ -99,3 +99,9 @@ select * from prices;
 
 -- Windows Functions over ->
 select * , sum(Prod_Price) over(PARTITION BY Prod_Name) as 'price with same prod name' from Products;
+
+select * , ROW_NUMBER() over(PARTITION BY Prod_Name) as 'row_num' from Products;
+
+select * , RANK() over(PARTITION BY Prod_Name order by Prod_Price DESC) as 'rank' from Products;
+
+select * , DENSE_RANK() over(PARTITION BY Prod_Name order by Prod_Price DESC) as 'rank' from Products;
