@@ -195,3 +195,12 @@ select continent_1,sum(units_1) from t1 group by city_1,country_1,continent_1;
 select continent_1, country_1,city_1,sum(units_1)  from t1 group by continent_1,country_1,city_1 WITH ROLLUP;
 
 -- in case of WITH CUBE all combinations it will return
+
+
+-- Indexing
+
+explain select * from t1 where units_1 >= 21 && units_1 <= 22;
+
+create INDEX indx1 on t1(units_1);
+
+drop INDEX indx1 on t1;
