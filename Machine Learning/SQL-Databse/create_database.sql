@@ -131,3 +131,67 @@ commit;
 ROLLBACK to s1;
 
 select * from Products;
+
+
+-- Rollups and Cubes
+
+
+create table t1(
+    continent_1 varchar(255),
+    country_1 varchar(255),
+    city_1 VARCHAR(255),
+    units_1 int
+);
+
+insert into t1 values('NORTH AMERICA','USA','NEW YORK',23);
+
+insert into t1 values('NORTH AMERICA','USA','NEW YORK',24);
+insert into t1 values('NORTH AMERICA','USA','NEW YORK',29);
+insert into t1 values('NORTH AMERICA','USA','NEW YORK',45);
+insert into t1 values('NORTH AMERICA','USA','NEW YORK',99);
+
+insert into t1 values('NORTH AMERICA','CANADA','OTTAWA',32);
+
+insert into t1 values('NORTH AMERICA','CANADA','OTTAWA',78);
+insert into t1 values('NORTH AMERICA','CANADA','OTTAWA',77);
+insert into t1 values('NORTH AMERICA','CANADA','OTTAWA',89);
+insert into t1 values('EUROPE','ENGLAND','LONDON',65);
+
+insert into t1 values('EUROPE','ENGLAND','CARDIFF',90);
+
+insert into t1 values('EUROPE','ENGLAND','LONDON',32);
+
+insert into t1 values('ASIA','INDIA','DELHI',21);
+
+insert into t1 values('ASIA','INDIA','DELHI',65);
+insert into t1 values('ASIA','INDIA','DELHI',90);
+insert into t1 values('ASIA','INDIA','DELHI',68);
+
+insert into t1 values('ASIA','PAKISTAN','KARACHI',32);
+
+insert into t1 values('ASIA','PAKISTAN','KARACHI',12);
+
+insert into t1 values('ASIA','BANGLADESH','DHAKA',56);
+
+insert into t1 values('ASIA','BANGLADESH','DHAKA',92);
+
+insert into t1 values('AUSTRALIA','AUSTRALIA','SYDNEY',32);
+
+insert into t1 values('AUSTRALIA','AUSTRALIA','SYDNEY',121);
+insert into t1 values('AUSTRALIA','AUSTRALIA','SYDNEY',78);
+
+
+insert into t1 values('AUSTRALIA','NEW ZEALAND','WELLINGTON',43);
+
+insert into t1 values('AUSTRALIA','NEW ZEALAND','WELLINGTON',67);
+insert into t1 values('AUSTRALIA','NEW ZEALAND','WELLINGTON',89);
+
+insert into t1 values('AUSTRALIA','NEW ZEALAND','WELLINGTON',34);
+select * from t1;
+
+
+select continent_1,sum(units_1) from t1 group by city_1,country_1,continent_1;
+
+select continent_1, country_1,city_1,sum(units_1)  from t1 group by continent_1,country_1,city_1 WITH ROLLUP;
+
+-- in case of WITH CUBE all combinations it will return
