@@ -106,3 +106,28 @@ select * , RANK() over(PARTITION BY Prod_Name order by Prod_Price DESC) as 'rank
 
 select * , DENSE_RANK() over(PARTITION BY Prod_Name order by Prod_Price DESC) as 'rank' from Products;
 
+-- Transactions starts from MASTER_HEARTBEAT_PERIOD
+
+SET autocommit =0;
+
+select * from Products;
+
+START TRANSACTION;
+
+insert into Products values(004,'Himanshu',04011999,'Human');
+COMMIT;
+
+ROLLBACK;
+
+
+insert into Products values(004,'Hims',04011999,'Human');
+SAVEPOINT s1;
+
+insert into Products values(004,'Himu',04011999,'Human');
+
+SAVEPOINT s2;
+commit;
+
+ROLLBACK to s1;
+
+select * from Products;
