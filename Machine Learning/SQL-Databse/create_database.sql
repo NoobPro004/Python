@@ -9,7 +9,7 @@ CREATE table tab1(
     address varchar(30)
 );
 
-desc tab1;
+desc Products;
 
 ALTER table tab1 MODIFY age dec(3) not null;
 
@@ -47,7 +47,7 @@ select * from tab1;
 select count(DISTINCT(address)) from tab1;
 
 
-create table info(
+create table info(react dnd beautiful
     N1 varchar(255),
     id1 int,
     city1 varchar(255),
@@ -105,3 +105,4 @@ select * , ROW_NUMBER() over(PARTITION BY Prod_Name) as 'row_num' from Products;
 select * , RANK() over(PARTITION BY Prod_Name order by Prod_Price DESC) as 'rank' from Products;
 
 select * , DENSE_RANK() over(PARTITION BY Prod_Name order by Prod_Price DESC) as 'rank' from Products;
+
